@@ -23,17 +23,28 @@ describe('test the server routes and db', () => {
     const res = await mockServer.post('/signup').send(user1);
     expect(res.status).toBe(200);
     expect(JSON.parse(res.text).username).toBe('john');
-    expect(JOSN.parse(res.text).password).toBeTruthy();
+    expect(JSON.parse(res.text).password).toBeTruthy();
   });
 
   test("we can send a user via basic auth to /signin", async() => {
 
     const res = await mockServer
-    .post("/signin")
+    .post('/signin')
     .auth(user1.username, user1.password);
     // .set('Authorization', encodedBasicAuthStr)
+
+    console.log("Response status:", res.status);
+    console.log("Response text:", res.text);
+
+    let parsedResponse;
+    try {
+      parsedResponse = JSON.parse(res.text);
+    } catch (err) {
+      console.error("Error parsing JSON:", err);
+    }
+    
     expect(res.status).toBe(200);
     expect(JSON.parse(res.text).username).toBe('john');
-    expect(JOSN.parse(res.text).password).toBeTruthy();
+    expect(JSON.parse(res.text).password).toBeTruthy();
   });
 });
