@@ -5,9 +5,9 @@ Authentication
 
 Author: Jonathan Brooks
 
-[Pull Request](https://github.com/jonbrooks01/basic-auth/pull/1)
+[Pull Request](https://github.com/jonbrooks01/basic-auth/pull/3)
 
-<!-- [deployed server](https://deployment-practice-main.onrender.com) -->
+[deployed server](https://basic-auth-cpgb.onrender.com)
 
 Setup
 .env requirements:PORT - 3000
