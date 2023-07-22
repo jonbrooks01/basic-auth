@@ -4,7 +4,8 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const basic = require('./auth/middleware/basic')
 const { Users } = require('./auth/models');
-
+const handle404 = require('./middleware/404');
+const handle500 = require('./middleware/500');
 
 // Prepare the express app
 const app = express();
@@ -35,5 +36,8 @@ app.post('/signup', async (req, res) => {
 app.post('/signin', basic, (req, res) => {
   res.status(200).send(req.user);
 });
+
+app.use('*', handle404);
+app.use(handle500);
 
 module.exports = app;
